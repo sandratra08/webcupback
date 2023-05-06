@@ -1,0 +1,9 @@
+fastapi[all]
+uvicorn
+tortoise-orm
+python-dotenv
+aerich
+passlib[bcrypt]
+aioredis
+psycopg2
+aiomysql
