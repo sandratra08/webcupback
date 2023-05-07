@@ -35,7 +35,7 @@ async def classify_input_text(input_data: InputData, user: UserDB = Depends(conn
         # Translate the input text to English
         translator = Translator()
         english_text = translator.translate(
-            description, src='auto', dest='en').text
+            description, src='fr', dest='en').text
 
         doc = nlp(english_text)
 
