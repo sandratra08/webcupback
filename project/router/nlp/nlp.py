@@ -4,11 +4,13 @@ import spacy
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from googletrans import Translator
+from tortoise import Tortoise
 from project.router.user.user import connected_user
 from project.schemas.dream.dream import InputData
 from project.schemas.user.user import UserDB
 from project.utils.keywords import *
 from fastapi.security.oauth2 import OAuth2PasswordBearer
+from tortoise.contrib.pydantic import pydantic_model_creator
 
 from project.models import Dream, User
 
@@ -16,6 +18,13 @@ from project.models import Dream, User
 nlp = spacy.load("en_core_web_sm")
 
 router = APIRouter()
+Tortoise.init_models(["project.models"], "models")
+pydantyc_model = pydantic_model_creator(Dream)
+
+@router.get("/")
+async def get_description(user: UserDB = Depends(connected_user), token: str = Depends(OAuth2PasswordBearer(tokenUrl="token"))):
+    if token is not None:
+        return await pydantyc_model.from_queryset_single(Dream.get(user_id=user.id))
 
 
 @router.post("/")
