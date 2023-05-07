@@ -26,3 +26,14 @@ class AccessToken(Model):
 
     class Meta:
         table = "access_tokens"
+
+
+class Dream(Model):
+    id = fields.IntField(pk=True, primary_key=True)
+    description = fields.TextField(null=False)
+    prediction = fields.CharField(max_length=40, null=True)
+    advice = fields.TextField(null=True)
+    user = fields.ForeignKeyField("models.User", null=False)
+
+    class Meta:
+        table = "dreams"

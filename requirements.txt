@@ -7,3 +7,8 @@ passlib[bcrypt]
 aioredis
 psycopg2
 aiomysql
+spacy==3.5.2
+spacy-legacy==3.0.12
+spacy-loggers==1.0.4
+scikit-learn
+googletrans=4.0.0rc1
