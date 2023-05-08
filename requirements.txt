@@ -2,6 +2,7 @@ fastapi[all]
 uvicorn
 tortoise-orm
 python-dotenv
+fastapi-cors
 aerich
 passlib[bcrypt]
 aioredis
